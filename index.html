@@ -5,7 +5,54 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>정산하기!</title>
 <style>
-@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url(fonts/NotoSansKR-Thin.woff2) format('woff2'),
+       url(fonts/NotoSansKR-Thin.woff) format('woff'),
+       url(fonts/NotoSansKR-Thin.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url(fonts/NotoSansKR-Light.woff2) format('woff2'),
+       url(fonts/NotoSansKR-Light.woff) format('woff'),
+       url(fonts/NotoSansKR-Light.otf) format('opentype');
+}
+@font-face {
+   font-family: 'Noto Sans KR';
+   font-style: normal;
+   font-weight: 400;
+   src: url(fonts/NotoSansKR-Regular.woff2) format('woff2'),
+        url(fonts/NotoSansKR-Regular.woff) format('woff'),
+        url(fonts/NotoSansKR-Regular.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans KR';
+   font-style: normal;
+   font-weight: 500;
+   src: url(fonts/NotoSansKR-Medium.woff2) format('woff2'),
+        url(fonts/NotoSansKR-Medium.woff) format('woff'),
+        url(fonts/NotoSansKR-Medium.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans KR';
+   font-style: normal;
+   font-weight: 700;
+   src: url(fonts/NotoSansKR-Bold.woff2) format('woff2'),
+        url(fonts/NotoSansKR-Bold.woff) format('woff'),
+        url(fonts/NotoSansKR-Bold.otf) format('opentype');
+ }
+@font-face {
+   font-family: 'Noto Sans KR';
+   font-style: normal;
+   font-weight: 900;
+   src: url(fonts/NotoSansKR-Black.woff2) format('woff2'),
+        url(fonts/NotoSansKR-Black.woff) format('woff'),
+        url(fonts/NotoSansKR-Black.otf) format('opentype');
+}
 body{font-family: 'Noto Sans KR', sans-serif;margin:0;padding:0;background:#f7f7f7}
 button{font-family:inherit;background:none;border:0;cursor: pointer;outline:none}
 p, input, button{font-family:inherit;margin:0;padding:0}
@@ -139,7 +186,8 @@ h1 span{font-weight:700;}
                 targetWrap.remove();
             },
             numberWithCommas : function (num) {
-                var parts = num.toString().split("."); return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+                var parts = num.toString().split(".");
+                return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
             },
             onCalcFunc : function () {
                 var DATAS = [],
