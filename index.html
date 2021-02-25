@@ -56,6 +56,7 @@
 body{font-family: 'Noto Sans KR', sans-serif;margin:0;padding:0;background:#f7f7f7}
 button{font-family:inherit;background:none;border:0;cursor: pointer;outline:none}
 p, input, button{font-family:inherit;margin:0;padding:0}
+input{-webkit-appearance:none;-webkit-border-radius: 0;}
 .dist{width:940px;margin:0 auto;padding:30px 0 70px;letter-spacing:-10px;}
 .dist input{border:0;border-bottom: 1px solid #000;outline:none;height:24px;vertical-align:middle;}
 .box{display:inline-block;position:relative;width:300px;border:1px solid #f2f2f2;;margin:20px 0 0 20px;padding:30px 20px;letter-spacing:0;box-sizing:border-box;vertical-align:top;background:#fff;box-shadow: 0px 8px 14px 0px rgb(0 0 0 / 13%);}
@@ -82,6 +83,11 @@ h1 span{font-weight:700;}
 .result p span{font-weight:700;}
 .result strong{display:block;margin-bottom:20px;font-size:32px}
 .btn-remove{position:absolute;top:5px;right:5px;padding:0 5px;border-bottom:2px solid #000;line-height:1.77;visibility:hidden;opacity:0;transition: all .2s}
+
+@media screen and (max-width: 768px) {
+.dist{width:auto;padding: 20px 16px 40px}
+.box{width:100%;margin-left:0}
+}
 </style>
 </head>
 <body>
