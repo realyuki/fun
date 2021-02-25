@@ -58,8 +58,9 @@ button{font-family:inherit;background:none;border:0;cursor: pointer;outline:none
 p, input, button{font-family:inherit;margin:0;padding:0}
 .dist{width:940px;margin:0 auto;padding:30px 0 70px;letter-spacing:-10px;}
 .dist input{border:0;border-bottom: 1px solid #000;outline:none;height:24px;vertical-align:middle;}
-.box{display:inline-block;width:300px;border:1px solid #f2f2f2;;margin:20px 0 0 20px;padding:20px;letter-spacing:0;box-sizing:border-box;vertical-align:top;background:#fff;box-shadow: 0px 8px 14px 0px rgb(0 0 0 / 13%);}
+.box{display:inline-block;position:relative;width:300px;border:1px solid #f2f2f2;;margin:20px 0 0 20px;padding:30px 20px;letter-spacing:0;box-sizing:border-box;vertical-align:top;background:#fff;box-shadow: 0px 8px 14px 0px rgb(0 0 0 / 13%);}
 .box:nth-child(3n + 1){margin-left:0}
+.box:hover .btn-remove{visibility:visible;opacity:1}
 .add-name{margin-top:15px;background:#000;color:#fff;padding:10px 20px}
 .name-input{font-size:0}
 .label{display:inline-block;margin-right:10px;vertical-align:middle;}
@@ -80,6 +81,7 @@ h1 span{font-weight:700;}
 .result p{margin-bottom:7px;font-size:24px;font-weight:100;}
 .result p span{font-weight:700;}
 .result strong{display:block;margin-bottom:20px;font-size:32px}
+.btn-remove{position:absolute;top:5px;right:5px;padding:0 5px;border-bottom:2px solid #000;line-height:1.77;visibility:hidden;opacity:0;transition: all .2s}
 </style>
 </head>
 <body>
@@ -87,6 +89,7 @@ h1 span{font-weight:700;}
         <h1><span>정산</span>하세요.</h1>
         <div class="box-wrap">
             <div class="box">
+                <button type="button" class="btn-remove">삭제</button>
                 <div class="box-place">
                     <p class="label">장소 : </p>
                     <input type="text">
@@ -146,6 +149,7 @@ h1 span{font-weight:700;}
                 btnAddBox : '.add-box',
                 boxWrap : '.box-wrap',
                 result : '.result',
+                btnRemove : '.btn-remove',
                 customEvent : '.Component' + (new Date()).getTime() + Math.random()
             };
             this.opts = $.extend(defParams, (args || {}));
@@ -167,6 +171,7 @@ h1 span{font-weight:700;}
                 if (type) {
                     $(doc).on('click', this.opts.btnAdd, $.proxy(this.onAddClick, this));
                     $(doc).on('click', this.opts.btnDel, $.proxy(this.onRemoveClick, this));
+                    $(doc).on('click', this.opts.btnRemove, $.proxy(this.onBoxRemove, this));
                     this.btnCalc.on('click', $.proxy(this.onCalcFunc, this));
                     this.btnAddBox.on('click', $.proxy(this.onAddBoxFunc, this));
                 }
@@ -184,6 +189,11 @@ h1 span{font-weight:700;}
                 var target = $(e.currentTarget),
                     targetWrap = target.closest(this.opts.inputWrap);
                 targetWrap.remove();
+            },
+            onBoxRemove : function (e) {
+                var target = $(e.currentTarget),
+                    targetBox = target.parent();
+                targetBox.remove();
             },
             numberWithCommas : function (num) {
                 var parts = num.toString().split(".");
@@ -232,7 +242,7 @@ h1 span{font-weight:700;}
                 }
             },
             onAddBoxFunc : function () {
-                var boxHtml = '<div class="box"><div class="box-place"><p class="label">장소 : </p><input type="text"></div>\
+                var boxHtml = '<div class="box"><button type="button" class="btn-remove">삭제</button><div class="box-place"><p class="label">장소 : </p><input type="text"></div>\
                 <div class="box-price"><p class="label">총 가격 : </p><input type="text"></div>\
                 <div class="box-name"><p class="label">참여자 : </p><div class="name-input">\
                     <div class="input-wrap"><input type="text"><button type="button" class="btn-delete">\
